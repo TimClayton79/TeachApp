@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalStudentName = document.getElementById('modal-student-name');
     const closeModalBtn = document.getElementById('close-modal');
     const actionButtons = document.querySelectorAll('.btn-action');
-    const modeSelector = document.getElementById('mode-selector'); // New Dropdown
+    const modeSelector = document.getElementById('mode-selector'); 
 
     let currentSelectedStudent = null;
     let currentSelectedTile = null; 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tile.style.gridColumn = student.col;
         tile.style.gridRow = student.row;
 
-        // 4. THE BRAIN (Starts at Line 35)
+        // 4. The "Brain" (Click Logic)
         tile.addEventListener('click', () => {
             const mode = modeSelector.value;
 
@@ -63,8 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
     actionButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             if (!currentSelectedStudent) return;
+            
             const actionType = e.target.getAttribute('data-action');
             
+            // Database Logging
+            supabase
+                .from('event_logs')
+                .insert([{ 
+                    student_name: currentSelectedStudent.name, 
+                    action: actionType 
+                }])
+                .then(() => console.log("Logged!"));
+
             if (actionType === 'toilet_out') currentSelectedTile.classList.add('toilet');
 
             const originalText = button.innerText;
