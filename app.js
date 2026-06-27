@@ -63,22 +63,32 @@ closeModalBtn.addEventListener('click', () => {
 });
 
 // Action Button Logic
+// Action Button Logic
 actionButtons.forEach(button => {
     button.addEventListener('click', (e) => {
         const actionType = e.target.getAttribute('data-action');
         
-        // 1. Log the action (For now, just to the console)
+        // 1. Log the action 
         console.log(`LOGGED: ${currentSelectedStudent.name} - ${actionType}`);
 
-        // 2. Visual feedback on the tile
+        // 2. Visual feedback on the seating plan tile
         if (actionType === 'toilet_out') {
             currentSelectedTile.classList.add('toilet');
-        } else if (actionType === 'sanction') {
-             // You might add a little red dot or border class here
-        }
+        } 
 
-        // 3. Hide the modal instantly so you can get back to teaching
-        modal.classList.add('hidden');
+        // 3. NEW: Visual feedback on the button itself!
+        // This lets you know the tap registered since the menu stays open.
+        const originalText = button.innerText;
+        button.innerText = "✅ Logged!";
+        button.style.backgroundColor = "#d4edda"; // Briefly turns light green
+        
+        setTimeout(() => {
+            button.innerText = originalText;
+            button.style.backgroundColor = ""; // Resets back to your CSS default
+        }, 500); // Changes back after half a second
+
+        // 4. THE FIX: We removed the line that hides the modal!
+        // modal.classList.add('hidden'); 
     });
 });
 
