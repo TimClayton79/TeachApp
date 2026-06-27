@@ -42,13 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
         tile.style.gridColumn = student.col;
         tile.style.gridRow = student.row;
 
-        // Add Interaction
-        tile.addEventListener('click', () => {
-            currentSelectedStudent = student;
-            currentSelectedTile = tile;
-            modalStudentName.innerText = student.name;
-            modal.classList.remove('hidden');
-        });
+       tile.addEventListener('click', () => {
+    if (currentMode === 'seating') {
+        // ... (Keep your original modal logic here) ...
+    } else {
+        // NEW: Know/Show logic
+        if (!tile.classList.contains('know')) {
+            tile.classList.add('know');
+        } else if (!tile.classList.contains('show')) {
+            tile.classList.remove('know');
+            tile.classList.add('show');
+        } else {
+            tile.classList.remove('show');
+        }
+    }
+});
 
         gridContainer.appendChild(tile);
     });
