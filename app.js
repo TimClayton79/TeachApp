@@ -16,23 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalStudentName = document.getElementById('modal-student-name');
     const closeModalBtn = document.getElementById('close-modal');
     const actionButtons = document.querySelectorAll('.btn-action');
+    const modeSelector = document.getElementById('mode-selector'); // New Dropdown
 
     let currentSelectedStudent = null;
     let currentSelectedTile = null; 
 
-    // ... under "Grab DOM elements"
-    const gridContainer = document.getElementById('classroom-grid');
-    // ... other elements ...
-
-    // Add this line here:
-    let currentMode = 'seating'; 
-
-    // Add the toggle function right after your variable:
-    document.getElementById('toggle-mode').addEventListener('click', () => {
-        currentMode = (currentMode === 'seating') ? 'knowshow' : 'seating';
-        alert("Mode switched to: " + currentMode); // Optional: quick confirmation
-    });
-    
     // 3. Generate Grid
     students.forEach(student => {
         const tile = document.createElement('div');
@@ -42,43 +30,42 @@ document.addEventListener('DOMContentLoaded', () => {
         tile.style.gridColumn = student.col;
         tile.style.gridRow = student.row;
 
-       tile.addEventListener('click', () => {
-    if (currentMode === 'seating') {
-        // ... (Keep your original modal logic here) ...
-    } else {
-        // NEW: Know/Show logic
-        if (!tile.classList.contains('know')) {
-            tile.classList.add('know');
-        } else if (!tile.classList.contains('show')) {
-            tile.classList.remove('know');
-            tile.classList.add('show');
-        } else {
-            tile.classList.remove('show');
-        }
-    }
-});
+        // 4. THE BRAIN (Starts at Line 35)
+        tile.addEventListener('click', () => {
+            const mode = modeSelector.value;
+
+            if (mode === 'seating') {
+                currentSelectedStudent = student;
+                currentSelectedTile = tile;
+                modalStudentName.innerText = student.name;
+                modal.classList.remove('hidden');
+            } else if (mode === 'knowshow') {
+                if (!tile.classList.contains('know')) {
+                    tile.classList.add('know');
+                } else if (!tile.classList.contains('show')) {
+                    tile.classList.remove('know');
+                    tile.classList.add('show');
+                } else {
+                    tile.classList.remove('show');
+                }
+            }
+        });
 
         gridContainer.appendChild(tile);
     });
 
-    // 4. Close Modal Logic
+    // 5. Close Modal Logic
     closeModalBtn.addEventListener('click', () => {
         modal.classList.add('hidden');
     });
 
-    // 5. Action Button Logic
+    // 6. Action Button Logic
     actionButtons.forEach(button => {
         button.addEventListener('click', (e) => {
-            
-            // The Guard Clause
             if (!currentSelectedStudent) return;
-            
             const actionType = e.target.getAttribute('data-action');
-            console.log(`LOGGED: ${currentSelectedStudent.name} - ${actionType}`);
-
-            if (actionType === 'toilet_out') {
-                currentSelectedTile.classList.add('toilet');
-            } 
+            
+            if (actionType === 'toilet_out') currentSelectedTile.classList.add('toilet');
 
             const originalText = button.innerText;
             button.innerText = "✅ Logged!";
@@ -90,5 +77,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500); 
         });
     });
-
 });
