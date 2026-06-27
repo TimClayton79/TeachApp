@@ -1,0 +1,43 @@
+/* style.css */
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+
+#classroom-grid {
+    display: grid;
+    /* Example: A room with 6 columns of desks */
+    grid-template-columns: repeat(6, 1fr); 
+    gap: 15px;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.student-tile {
+    background-color: white;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.1s, border-color 0.2s;
+    user-select: none; /* Prevents text highlighting when tapping fast */
+}
+
+/* Interaction States */
+.student-tile:active {
+    transform: scale(0.95);
+}
+
+.student-tile.absent {
+    background-color: #ffebee;
+    border-color: #f44336;
+    color: #d32f2f;
+}
+
+.student-tile.toilet {
+    background-color: #e3f2fd;
+    border-color: #2196f3;
+}
