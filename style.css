@@ -24,6 +24,8 @@ body {
     cursor: pointer;
     transition: transform 0.1s, border-color 0.2s;
     user-select: none; /* Prevents text highlighting when tapping fast */
+    position: relative; /* Required for z-index to work */
+    z-index: 10;        /* Forces the tile to the front */
 }
 
 /* Interaction States */
