@@ -55,6 +55,7 @@ body {
 /* Hide class for JS toggling */
 .hidden {
     display: none !important;
+    pointer-events: none; /* Add this line! */
 }
 
 /* Modal Box */
