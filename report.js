@@ -2,26 +2,34 @@ const supabaseUrl = 'YOUR_URL_HERE';
 const supabaseKey = 'YOUR_ANON_KEY_HERE';
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-async function fetchLogs() {
-    const { data, error } = await supabase
-        .from('event_logs')
-        .select('*')
-        .order('created_at', { ascending: false });
+async function fetchSummary() {
+    // 1. Fetch all logs
+    const { data, error } = await supabase.from('event_logs').select('*');
+    if (error) { console.error(error); return; }
 
-    if (error) {
-        console.error("Error fetching logs:", error);
-        return;
-    }
-
-    const tbody = document.getElementById('report-body');
+    // 2. Tally the data
+    const summary = {};
     data.forEach(log => {
+        if (!summary[log.student_name]) {
+            summary[log.student_name] = {};
+        }
+        summary[log.student_name][log.action] = (summary[log.student_name][log.action] || 0) + 1;
+    });
+
+    // 3. Render the summary
+    const tbody = document.getElementById('report-body');
+    tbody.innerHTML = ''; // Clear existing
+
+    Object.keys(summary).forEach(student => {
+        const actions = summary[student];
         const row = `<tr>
-            <td>${log.student_name}</td>
-            <td>${log.action}</td>
-            <td>${new Date(log.created_at).toLocaleString()}</td>
+            <td><strong>${student}</strong></td>
+            <td>${actions.reward || 0}</td>
+            <td>${actions.toilet_out || 0}</td>
+            <td>${actions.sanction || 0}</td>
         </tr>`;
         tbody.innerHTML += row;
     });
 }
 
-fetchLogs();
+fetchSummary();
