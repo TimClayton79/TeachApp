@@ -1,6 +1,11 @@
 // app.js
 
 document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
+    console.log("Script is running..."); // ADD THIS LINE
+    
+    // ... rest of your code ...
+});
 
     // 1. Mock Data 
     const students = [
