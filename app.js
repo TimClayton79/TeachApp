@@ -10,6 +10,10 @@ const students = [
 ];
 
 const gridContainer = document.getElementById('classroom-grid');
+// Add this temporarily to track your clicks
+document.addEventListener('click', (e) => {
+    console.log("You just clicked on:", e.target);
+});
 
 // 2. Generate the Grid
 students.forEach(student => {
