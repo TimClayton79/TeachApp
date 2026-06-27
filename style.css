@@ -41,3 +41,63 @@ body {
     background-color: #e3f2fd;
     border-color: #2196f3;
 }
+/* Modal Overlay Background */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Hide class for JS toggling */
+.hidden {
+    display: none !important;
+}
+
+/* Modal Box */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* Grid for the buttons so they are nice and large for tapping */
+.action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+/* Action Buttons */
+.btn-action {
+    padding: 15px 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    transition: transform 0.1s;
+}
+
+.btn-action:active {
+    transform: scale(0.95);
+}
+
+.btn-cancel {
+    width: 100%;
+    padding: 12px;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
