@@ -20,6 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSelectedStudent = null;
     let currentSelectedTile = null; 
 
+    // ... under "Grab DOM elements"
+    const gridContainer = document.getElementById('classroom-grid');
+    // ... other elements ...
+
+    // Add this line here:
+    let currentMode = 'seating'; 
+
+    // Add the toggle function right after your variable:
+    document.getElementById('toggle-mode').addEventListener('click', () => {
+        currentMode = (currentMode === 'seating') ? 'knowshow' : 'seating';
+        alert("Mode switched to: " + currentMode); // Optional: quick confirmation
+    });
+    
     // 3. Generate Grid
     students.forEach(student => {
         const tile = document.createElement('div');
