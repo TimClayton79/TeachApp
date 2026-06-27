@@ -70,6 +70,9 @@ closeModalBtn.addEventListener('click', () => {
 // Action Button Logic
 actionButtons.forEach(button => {
     button.addEventListener('click', (e) => {
+
+        if (!currentSelectedStudent) return;
+        
         const actionType = e.target.getAttribute('data-action');
         
         // 1. Log the action 
