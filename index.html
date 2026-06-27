@@ -14,5 +14,17 @@
     <main id="classroom-grid"></main>
 
     <script src="app.js"></script>
+    <div id="action-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <h2 id="modal-student-name">Student Name</h2>
+        <div class="action-grid">
+            <button class="btn-action reward" data-action="reward">🟢 Reward</button>
+            <button class="btn-action sanction" data-action="sanction">🔴 Sanction</button>
+            <button class="btn-action toilet" data-action="toilet_out">🚽 Toilet</button>
+            <button class="btn-action timeout" data-action="time_out">⏱️ Time Out</button>
+        </div>
+        <button id="close-modal" class="btn-cancel">Cancel</button>
+    </div>
+</div>
 </body>
 </html>
