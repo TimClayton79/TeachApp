@@ -5,7 +5,7 @@ const students = [
     { id: 1, name: "Alice", col: 1, row: 1 },
     { id: 2, name: "Bob", col: 2, row: 1 },
     { id: 3, name: "Charlie", col: 3, row: 1 },
-    { id: 4, name: "David", col: 1, row: 2 },
+    { id: 4, name: "David", col: 1, row: 2 }
     // ... add more to fill the grid
 ];
 
