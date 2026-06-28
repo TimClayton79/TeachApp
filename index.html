@@ -1,40 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>TeachApp</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Year 10 - Academic Monitoring</h1>
-        <button id="btn-register">Submit Register</button>
-    </header>
-
-      <select id="mode-selector" style="margin-bottom: 20px; padding: 10px;">
-    <option value="seating">Seating Plan (Default)</option>
-    <option value="knowshow">Know / Show Mode</option>
+    <select id="mode-selector">
+        <option value="seating">Seating Plan</option>
+        <option value="knowshow">Know / Show</option>
+    </select>
     
-    <main id="classroom-grid"> 
-      
-    
-    </main>
-   
-
-
-<div id="action-modal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <h2 id="modal-student-name">Student Name</h2>
-            <div class="action-grid">
-                <button class="btn-action reward" data-action="reward">🟢 Reward</button>
-                <button class="btn-action sanction" data-action="sanction">🔴 Sanction</button>
-                <button class="btn-action toilet" data-action="toilet_out">🚽 Toilet</button>
-                <button class="btn-action timeout" data-action="time_out">⏱️ Time Out</button>
-            </div>
-            <button id="close-modal" class="btn-cancel">Cancel</button>
-        </div>
-    </div>
+    <main id="classroom-grid"></main>
 
     <script src="app.js"></script>
 </body>
