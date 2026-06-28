@@ -8,24 +8,19 @@ body {
 
 #classroom-grid {
     display: grid;
-    /* Example: A room with 6 columns of desks */
-    grid-template-columns: repeat(6, 1fr); 
-    gap: 15px;
-    max-width: 900px;
-    margin: 20px auto;
+    grid-template-columns: repeat(3, 100px);
+    grid-auto-rows: 100px;
+    gap: 10px;
+    border: 2px solid red; /* This will draw a red box around your grid area */
+    min-height: 200px;     /* Forces the grid to be visible */
 }
 
 .student-tile {
-    background-color: white;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.1s, border-color 0.2s;
-    user-select: none; /* Prevents text highlighting when tapping fast */
-    position: relative; /* Required for z-index to work */
-    z-index: 10;        /* Forces the tile to the front */
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Interaction States */
