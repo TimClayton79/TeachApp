@@ -8,11 +8,12 @@ body {
 
 #classroom-grid {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-auto-rows: 100px;
+    /* This creates 3 columns of equal size */
+    grid-template-columns: repeat(3, 1fr); 
+    /* This tells the grid to add new rows as needed for your 20 students */
+    grid-auto-rows: minmax(80px, auto); 
     gap: 10px;
-    border: 2px solid red; /* This will draw a red box around your grid area */
-    min-height: 200px;     /* Forces the grid to be visible */
+    padding: 20px;
 }
 
 .student-tile {
